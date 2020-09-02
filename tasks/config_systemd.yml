@@ -1,0 +1,4 @@
+- name: Copy systemd nginx.service
+  copy:
+    src: ../files/nginx.service
+    dest: /lib/systemd/system/

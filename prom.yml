@@ -1,0 +1,12 @@
+---
+- name: Prometheus
+  hosts: prom-server-atl
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - include: tasks/copy_nginx_auth.yml
+    - include: tasks/yum.yml
+    - include: tasks/compile_nginx.yml
+    - include: tasks/pos_install.yml
+    - include: tasks/config_systemd.yml

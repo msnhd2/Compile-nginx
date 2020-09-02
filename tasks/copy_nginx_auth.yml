@@ -1,0 +1,16 @@
+- name: Copy repo nginx-auth
+  copy:
+    src: "{{ item }}"
+    dest: /opt/
+    owner: root
+    group: root
+    mode: 755
+  with_items:
+    - ../nginx-auth-ldap
+    - ../files/nginx-1.16.1.tar.gz
+
+- name: Extrac nginx-1.16.1
+  unarchive:
+    src: /opt/nginx-1.16.1.tar.gz 
+    dest: /opt/
+    remote_src: yes

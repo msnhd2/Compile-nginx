@@ -1,0 +1,6 @@
+- name: Exec pos install commands
+  shell: "{{ item }}"
+  with_items:
+    - systemctl daemon-reload
+    - pkill -9 -f nginx
+    - /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf

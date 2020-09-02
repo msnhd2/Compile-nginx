@@ -1,0 +1,21 @@
+- name: Compile nginx
+  shell: "{{ item }}"
+  with_items:
+    - chmod +x /opt/nginx-1.16.1/configure
+    - cd /opt/nginx-1.16.1; ./configure --add-module=/opt/nginx-auth-ldap/ --with-pcre --with-threads --prefix=/usr/local/nginx 
+    - cd /opt/nginx-1.16.1; make install
+
+- name: Create user nginx
+  shell: "{{ item }}"
+  with_items:
+    - adduser nginx
+    - chown nginx /usr/local/nginx/conf/nginx.conf
+
+- name: Copy nginx conf file
+  copy:
+    src: ../files/nginx.conf
+    dest: /usr/local/nginx/conf/
+    mode: 755
+    owner: nginx
+    group: nginx
+

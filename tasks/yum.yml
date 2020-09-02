@@ -1,0 +1,8 @@
+- name: Install yum packages
+  yum:
+    name:
+      - pcre-devel.x86_64 
+      - zlib-devel.x86_64 
+      - openldap-devel.x86_64
+      - openssl-devel.x86_64
+    state: present
